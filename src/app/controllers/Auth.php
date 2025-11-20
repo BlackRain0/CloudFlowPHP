@@ -5,7 +5,7 @@ use app\util\Connect;
 
 
 class Auth{
-    public static function registration($formData, $formFile){
+    public static function registrationUser($formData, $formFile){
         $email = $formData['email'];
         $name = $formData['name'];
         $pass = $formData['pass'];
@@ -33,7 +33,7 @@ class Auth{
 
     }
 
-    public static function auth($data){
+    public static function authUser($data){
         $email = $data["email"];
         $pass = $data["pass"];
 

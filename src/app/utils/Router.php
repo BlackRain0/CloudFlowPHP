@@ -3,7 +3,7 @@ namespace app\utils;
 
 class Router{
     
-    public static $pagesList = [];
+    public static $pageList = [];
 
     public static function getUrl($url, $namePage){
         self::$pageList[] = [
@@ -34,6 +34,9 @@ class Router{
                         case 'createGroup':
                             $action -> $method($_POST);
                             break;
+                        case 'getGroupById':
+                            $action -> $method($_POST);
+                            break;
                         case "redactGroupName":
                             $action -> $method($_POST);
                             break;
@@ -43,10 +46,16 @@ class Router{
                         case "addUserToGroup":
                             $action -> $method($_POST);
                             break;
+                        case "redactUserRole":
+                            $action -> $method($_POST);
+                            break;
                         case "deleteUserFromGroup":
                             $action -> $method($_POST);
                             break;
                         case 'createTask':
+                            $action -> $method($_POST);
+                            break;
+                        case 'getTaskByGroup':
                             $action -> $method($_POST);
                             break;
                         case "redactTask":
@@ -55,7 +64,16 @@ class Router{
                         case "deleteTask":
                             $action -> $method($_POST);
                             break;
+                        case "getUserById":
+                            $action -> $method($_POST, $_FILES);
+                            break;
+                        case "getUserByGroup":
+                            $action -> $method($_POST, $_FILES);
+                            break;
                         case "registrationUser":
+                            $action -> $method($_POST, $_FILES);
+                            break;
+                        case "redactUser":
                             $action -> $method($_POST, $_FILES);
                             break;
                         case "authUser":

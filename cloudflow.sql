@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 20 2025 г., 10:39
+-- Время создания: Ноя 20 2025 г., 20:02
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- База данных: `cloudflow`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` int NOT NULL,
+  `title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -76,20 +87,15 @@ CREATE TABLE `user_role` (
   `user_role` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Структура таблицы `work_groups`
---
-
-CREATE TABLE `work_groups` (
-  `id` int NOT NULL,
-  `title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `tasks`
@@ -121,14 +127,14 @@ ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `work_groups`
---
-ALTER TABLE `work_groups`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `tasks`
@@ -155,12 +161,6 @@ ALTER TABLE `user_role`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `work_groups`
---
-ALTER TABLE `work_groups`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
 -- Ограничения внешнего ключа сохраненных таблиц
 --
 
@@ -169,14 +169,14 @@ ALTER TABLE `work_groups`
 --
 ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`fk_group_id`) REFERENCES `work_groups` (`id`);
+  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`fk_group_id`) REFERENCES `groups` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `user_group`
 --
 ALTER TABLE `user_group`
   ADD CONSTRAINT `user_group_ibfk_1` FOREIGN KEY (`user_role`) REFERENCES `user_role` (`id`),
-  ADD CONSTRAINT `user_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `work_groups` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_group_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
