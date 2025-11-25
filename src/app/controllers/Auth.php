@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
-use app\util\Router;
-use app\util\Connect;
+use app\utils\Router;
+use app\utils\Connect;
 
 
 class Auth{

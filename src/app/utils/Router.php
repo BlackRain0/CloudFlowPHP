@@ -13,7 +13,7 @@ class Router{
     }
 
     public static function postUrl($url, $controller, $method, $data=null, $file=null){
-        self::$pagesList[] =[
+        self::$pageList[]= [
             "url" => $url,
             "class" => $controller,
             "method" => $method,
@@ -56,6 +56,9 @@ class Router{
                             $action -> $method($_POST);
                             break;
                         case 'getTaskByGroup':
+                            $action -> $method($_POST);
+                            break;
+                        case 'getTaskById':
                             $action -> $method($_POST);
                             break;
                         case "redactTask":
