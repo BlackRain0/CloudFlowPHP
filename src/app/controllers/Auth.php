@@ -17,18 +17,19 @@ class Auth{
         }
 
         $fileName = time(). '_' . $photo['name'];
-        $path = "uploads/photo/" . $fileName;
+        $path = "src/uploads/users/" . $fileName;
 
         if(move_uploaded_file($photo["tmp_name"], $path)){
             $pass = password_hash($pass, PASSWORD_DEFAULT);
 
             $queryReg = "INSERT INTO `users`(`id`, `name`, `mail`, `password`, `photo`)
-             VALUES (null,'$name','$email','$pass', '$photo')";
-             $reg = mysqli_query(Connect::connect(), $queryReg);
+             VALUES (null,'$name','$email','$pass', '$path')";
+           $reg = mysqli_query(Connect::connect(), $queryReg);
 
              header("Location: ../");
         }else{
             Router::errors('500');
+            echo "failed to add";
         }
 
     }
@@ -59,7 +60,8 @@ class Auth{
     public static function logout(){
 
         unset($_SESSION["email"]);
-        header('Location: ../');
+        header("Location: ../");
+        exit;
     }
     
 

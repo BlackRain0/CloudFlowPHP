@@ -7,11 +7,11 @@ use app\controllers\User;
 
 Router::getUrl('/', 'home');
 Router::getUrl('/login', 'login');
-Router::getUrl('/auth', 'auth');
+Router::getUrl('/auth', 'authPage');
 Router::getUrl('/users', 'users');
 Router::getUrl('/groups', 'groups');
 
-Router::postUrl('/user/auth', Auth::class, 'authUser', true, false);
+Router::postUrl('/user/login', Auth::class, 'authUser', true, false);
 Router::postUrl('/user/register', Auth::class, 'registrationUser', true, true);
 Router::postUrl('/user/logout', Auth::class, 'logout', false, false);
 
@@ -35,6 +35,6 @@ Router::postUrl('/user/redact', User::class, 'redactUser', true, true);
 Router::postUrl('/user/get', User::class, 'getUserById', true, false);
 Router::postUrl('/user/delete', User::class, 'deleteUser', true, false);
 
-
+Router::getContent();
 
 ?>

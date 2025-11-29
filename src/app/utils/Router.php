@@ -24,9 +24,9 @@ class Router{
     }
 
     public static function getContent(){
-        $get = $_GET['q'] ?? '';
+        $get = $_GET['rout'] ?? '';
         foreach(self::$pageList as $val){
-            if($val['url'] === '/'.$get){
+            if($val['url'] === '/' . $get){
                 if($_SERVER["REQUEST_METHOD"] === 'POST'){
                     $action = new $val['class'];
                     $method = $val['method'];
@@ -68,10 +68,10 @@ class Router{
                             $action -> $method($_POST);
                             break;
                         case "getUserById":
-                            $action -> $method($_POST, $_FILES);
+                            $action -> $method($_POST);
                             break;
                         case "getUserByGroup":
-                            $action -> $method($_POST, $_FILES);
+                            $action -> $method($_POST);
                             break;
                         case "registrationUser":
                             $action -> $method($_POST, $_FILES);
@@ -87,7 +87,7 @@ class Router{
                             break;
                     }
                 }else{
-                    require_once "views/pages/" . $val["namePage"] . '.php';
+                    require_once "src/views/" . $val["namePage"] . '.php';
                     die();
                 }
             }
@@ -96,7 +96,7 @@ class Router{
     }
 
     public static function errors($err){
-        require_once "views/errors/" . $err . '.php';
+        require_once "/../../errors/" . $err . '.php';
         die();
     }
 
