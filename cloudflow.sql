@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 20 2025 г., 20:02
+-- Время создания: Ноя 30 2025 г., 18:51
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -29,8 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `groups` (
   `id` int NOT NULL,
-  `title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `group_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `groups`
+--
+
+INSERT INTO `groups` (`id`, `title`, `group_code`) VALUES
+(1, 'ГазПРОО', 'cbe37bfa'),
+(2, 'Маслоуу', '533c5778');
 
 -- --------------------------------------------------------
 
@@ -59,9 +68,17 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `photo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `mail`, `password`, `photo`) VALUES
+(1, 'Михаил', 'ohnnyrain@gmail.com', '$2y$10$Ij1mXbYFMeOVLRu45TQ2quCIK8es73cW84NQ1oo32UFy7sovzoQMO', 'Array'),
+(3, 'admin', 'admin@gmail.com', '$2y$10$IL0S6rWTiHNGpwJDZFDVKOE7sTjaUCJnuLbP/pAv.O8CF3IWTIYdS', 'src/uploads/users/1764517179_lifo.png');
 
 -- --------------------------------------------------------
 
@@ -76,6 +93,14 @@ CREATE TABLE `user_group` (
   `user_role` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Дамп данных таблицы `user_group`
+--
+
+INSERT INTO `user_group` (`id`, `user_id`, `group_id`, `user_role`) VALUES
+(1, 1, 1, 2),
+(2, 1, 2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -86,6 +111,14 @@ CREATE TABLE `user_role` (
   `id` int NOT NULL,
   `user_role` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `user_role`) VALUES
+(1, 'U'),
+(2, 'A');
 
 --
 -- Индексы сохранённых таблиц
@@ -134,7 +167,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT для таблицы `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `tasks`
@@ -146,19 +179,19 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `user_group`
 --
 ALTER TABLE `user_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
