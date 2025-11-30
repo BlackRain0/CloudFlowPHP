@@ -51,8 +51,9 @@
                                 <?php }?>
                             </ul>
                         </div>
-
-                         <h1 class="text-center text-white">CloudFlow</h1>
+                        <a href="/">
+                            <h1 class="text-center text-white">CloudFlow</h1>
+                        </a>
                          <div class="dropdown">
                              <a href="#" class="btn" role="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                  <i class="bi bi-person-fill text-white" style="font-size: 2rem;"></i>
@@ -74,6 +75,7 @@
                                                  <li>
                                         <a href="#" class="dropdown-item">
                                             <?= $_SESSION['email'] ?> 
+                                        </a>
                                             <form action="/user/logout" method="POST">
                                                 <input type="submit" value="Выйти">
                                             </form>

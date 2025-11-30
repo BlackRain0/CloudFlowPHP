@@ -37,6 +37,12 @@ class Router{
                         case 'getGroupById':
                             $action -> $method($_POST);
                             break;
+                        case 'getGroupByCode':
+                            $action -> $method($_POST);
+                            break;
+                        case 'getGroupByUser':
+                            $action -> $method($_POST);
+                            break;
                         case "redactGroupName":
                             $action -> $method($_POST);
                             break;
@@ -71,6 +77,9 @@ class Router{
                             $action -> $method($_POST);
                             break;
                         case "getUserByGroup":
+                            $action -> $method($_POST);
+                            break;
+                        case "getUserByEmail":
                             $action -> $method($_POST);
                             break;
                         case "registrationUser":

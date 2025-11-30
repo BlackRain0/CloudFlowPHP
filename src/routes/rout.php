@@ -17,6 +17,7 @@ Router::postUrl('/user/logout', Auth::class, 'logout', false, false);
 
 Router::postUrl('/group/add', Group::class,'createGroup', true, false);
 Router::postUrl('/group/get', Group::class,'getGroupById', true, false);
+Router::postUrl('/group/get/code', Group::class,'getGroupByCode', true, false);
 Router::postUrl('/group/redact', Group::class,'redactGroupName', true, false);
 Router::postUrl('/group/delete', Group::class,'deleteGroup', true, false);
 Router::postUrl('/group/user/get', User::class,'getUserByGroup', true, false);

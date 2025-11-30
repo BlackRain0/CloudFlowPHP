@@ -1,5 +1,10 @@
-<?php  
+<?php
+
+use app\controllers\Group;
+use app\controllers\User;
+
 include("src/views/src/includes/header.php");
+
 ?>
 
 		<div class="container">
@@ -33,27 +38,35 @@ include("src/views/src/includes/header.php");
 							</div>
 						</div>
 						 <?php
-					}else if($_SESSION['email'] != null){
+					}else if(isset($_SESSION['email']) && $_SESSION['email'] != null){
+							$currentUser = User::getUserByEmail($_SESSION['email']);
+
+						$userGroup = [];
+						if($currentUser && isset($currentUser['id'])){
+							try{
+							$userGroup = Group::getGroupByUser(['userId' => $currentUser['id']]);
+							$userGroup = is_array($userGroup) ? $userGroup : [];
+							}catch(Exception $e){
+								die("Error getting user groups: " . $e -> getMessage());
+								$userGroup= [];
+							}
+						}
 					?>
 			<div class="row m-5">
-
+					<?php if(!empty($userGroup)){
+					foreach($userGroup as $group){?>
 				<div class="col-3 col-sm-12 col-md-6">
-					<?php
-					// foreach($var as $variable){
-
-					// } 
-					?>
-
 					<div class="card">
 						<a href="#" class="btn">
 							<div class="card-body">
-								<h2 class="card-title"><?php ?>Группа</h2>
+								<h2 class="card-title"><?= htmlspecialchars($group['title']);?></h2>
 							</div>
 						</a>
 					</div>
-				</div>
+				</div> <?php } ?>
 			</div>
-			<?php } ?>
+			<?php }
+			} ?>
 		</div>
 		
 <?php include("src/views/src/includes/modalAddGroup.php"); ?>
