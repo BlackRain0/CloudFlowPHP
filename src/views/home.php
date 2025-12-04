@@ -55,9 +55,9 @@ include("src/views/src/includes/header.php");
 			<div class="row m-5">
 					<?php if(!empty($userGroup)){
 					foreach($userGroup as $group){?>
-				<div class="col-3 col-sm-12 col-md-6">
+				<div class="col-3 col-sm-12 col-md-6 g-3">
 					<div class="card">
-						<a href="#" class="btn">
+						<a href="/group?id=<?=$group['id']?>" class="btn">
 							<div class="card-body">
 								<h2 class="card-title"><?= htmlspecialchars($group['title']);?></h2>
 							</div>

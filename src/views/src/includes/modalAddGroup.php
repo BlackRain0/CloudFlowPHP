@@ -7,8 +7,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-control">
-                    <form action="#" method="POST" class="d-flex">
-        <input type="text" class="form-control" name="code" id="groupCode" placeholder="Код группы">
+                    <form action="/user/add/group" method="POST" class="d-flex">
+        <input type="text" class="form-control" name="groupCode" id="groupCode" placeholder="Код группы">
         <button type="submit" class="btn btn-primary ms-3">Добавить</button>
     </form>
                 </div>

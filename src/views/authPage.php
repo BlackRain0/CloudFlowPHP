@@ -1,6 +1,19 @@
 <?php
  include("src/views/src/includes/header.php");
 ?>
+<?php if(isset($_GET['error'])): ?>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <?= htmlspecialchars($_GET['error']) ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<?php endif; ?>
+
+<?php if(isset($_GET['success'])): ?>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <?= htmlspecialchars($_GET['success']) ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<?php endif; ?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -44,7 +57,7 @@
                                 <label for="photo">
                                     Фото
                                 </label>
-                                <input type="file" class="form-control" id="photo" placeholder="Пароль" name="photo">
+                                <input type="file" class="form-control" id="photo" placeholder="Фото" name="photo">
                     
                             </div>
                             <button class="btn btn-primary my-3">Зарегистрироваться</button>

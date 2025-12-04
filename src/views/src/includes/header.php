@@ -34,17 +34,17 @@
                                 <?php }else if($_SESSION['email']  != null){?>
                                 <!-- --------------------------------------------- -->
                                 <li>
-                                    <a href="#" class="dropdown-item">
+                                    <a href="/" class="dropdown-item">
                                         Группы
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="dropdown-item">
+                                    <a href="/tasks" class="dropdown-item">
                                         Мои задачи
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="dropdown-item">
+                                    <a href="/user" class="dropdown-item">
                                         Профиль
                                     </a>
                                 </li>
@@ -58,7 +58,7 @@
                              <a href="#" class="btn" role="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                  <i class="bi bi-person-fill text-white" style="font-size: 2rem;"></i>
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
                                     <?php
                                     if($_SESSION['email'] == ''){
                                     ?>
@@ -72,12 +72,14 @@
                                         </a>
                                     </li>
                                     <?php }else if($_SESSION['email'] != null){ ?>
-                                                 <li>
-                                        <a href="#" class="dropdown-item">
+                                                 <li class="g-3">
+                                        <a href="/user" class="dropdown-item">
                                             <?= $_SESSION['email'] ?> 
                                         </a>
-                                            <form action="/user/logout" method="POST">
-                                                <input type="submit" value="Выйти">
+                                            <form action="/user/logout" method="POST" class="mt-2">
+                                                <button type="submit" value="Выйти" class="btn btn-outline-danger btn-sm w-100">
+                                                <i class="bi bi-box-arrow-right me-2"></i>Выйти
+                                                </button>
                                             </form>
                                             <?php } ?>
                                         </a>

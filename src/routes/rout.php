@@ -8,8 +8,9 @@ use app\controllers\User;
 Router::getUrl('/', 'home');
 Router::getUrl('/login', 'login');
 Router::getUrl('/auth', 'authPage');
-Router::getUrl('/users', 'users');
-Router::getUrl('/groups', 'groups');
+Router::getUrl('/user', 'user');
+Router::getUrl('/group', 'group');
+Router::getUrl('/tasks', 'tasks');
 
 Router::postUrl('/user/login', Auth::class, 'authUser', true, false);
 Router::postUrl('/user/register', Auth::class, 'registrationUser', true, true);
@@ -26,13 +27,14 @@ Router::postUrl('/group/user/redact', Group::class,'redactUserRole', true, false
 Router::postUrl('/group/user/delete', Group::class,'deleteUserFromGroup', true, false);
 
 
+Router::postUrl('/group/task/update', Task::class, 'updateTask', true, false);
+Router::postUrl('/group/task/delete', Task::class, 'deleteTask', true, false);
 Router::postUrl('/group/task/add', Task::class, 'createTask', true, false);
 Router::postUrl('/group/task/get', Task::class, 'getTaskByGroup', true, false);
 Router::postUrl('/group/task/get/id', Task::class, 'getTaskById', true, false);
-Router::postUrl('/group/task/redact', Task::class, 'redactTask', true, false);
-Router::postUrl('/group/task/delete', Task::class, 'deleteTask', true, false);
 
-Router::postUrl('/user/redact', User::class, 'redactUser', true, true);
+Router::postUrl('/user/update', User::class, 'redactUser', true, true);
+Router::postUrl('/user/add/group', User::class, 'addGroupToUser', true, true);
 Router::postUrl('/user/get', User::class, 'getUserById', true, false);
 Router::postUrl('/user/delete', User::class, 'deleteUser', true, false);
 

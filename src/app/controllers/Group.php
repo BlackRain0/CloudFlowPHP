@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 use app\utils\Connect;
-
+use mysqli;
 
 class Group{
 
@@ -37,13 +37,12 @@ class Group{
         }
     }
        public static function getGroupById($id){
-    $id = $id['id'];
     $queryGet = "SELECT * FROM `groups` WHERE `id`='$id'";
     $get = mysqli_query(Connect::connect(), $queryGet);
      if(!$get){
             die("error: getting failed");
         }else{
-            header("Location: ../");
+            return mysqli_fetch_assoc($get);
         }
    }
 
@@ -84,6 +83,22 @@ class Group{
     mysqli_stmt_close($stmt);
     return $groups;
 
+   }
+
+   public static function getGroupAdmin($id){
+    $conn = Connect::connect();
+    $adminRole = 2;
+    $queryGet = "SELECT `user_id` FROM `user_group` WHERE `group_id` = ? AND `user_role` = ?";
+    $stmt = mysqli_prepare($conn,$queryGet);
+    mysqli_stmt_bind_param($stmt,'ii', $id, $adminRole);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if(!$result){
+        die("Error: cant get admin");
+    }else{
+        $group=mysqli_fetch_assoc($result);
+        return $group;
+    }
    }
 
     public static function redactGroupName($data){

@@ -34,7 +34,7 @@ class Router{
                         case 'createGroup':
                             $action -> $method($_POST);
                             break;
-                        case 'getGroupById':
+                        case 'getGroupByCode':
                             $action -> $method($_POST);
                             break;
                         case 'getGroupByCode':
@@ -67,7 +67,7 @@ class Router{
                         case 'getTaskById':
                             $action -> $method($_POST);
                             break;
-                        case "redactTask":
+                        case "updateTask":
                             $action -> $method($_POST);
                             break;
                         case "deleteTask":
@@ -77,6 +77,9 @@ class Router{
                             $action -> $method($_POST);
                             break;
                         case "getUserByGroup":
+                            $action -> $method($_POST);
+                            break;
+                        case "addGroupToUser":
                             $action -> $method($_POST);
                             break;
                         case "getUserByEmail":
@@ -105,7 +108,7 @@ class Router{
     }
 
     public static function errors($err){
-        require_once "/../../errors/" . $err . '.php';
+        require_once "src/views/src/errors/" . $err . '.php';
         die();
     }
 
